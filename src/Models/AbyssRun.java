@@ -1,7 +1,10 @@
 package Models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AbyssRun {
     private LocalDateTime startTimeStamp;
@@ -60,6 +63,22 @@ public class AbyssRun {
         this.elapsedTime = stopNanos - startNanos;
     }
 
+    // TODO might want to make this a static util method
+    private String formatTime(long nanoTime) {
+        long tempSec = nanoTime / (1000*1000*1000);
+        long sec = tempSec % 60;
+        long min = (tempSec / 60) % 60;
+
+        String secLabel = String.valueOf(sec);
+        String minLabel = String.valueOf(min);
+
+        if (sec < 10) secLabel = "0" + sec;
+        if (min < 10) minLabel = "0" + min;
+        StringBuilder result = new StringBuilder();
+
+        return result.append(minLabel).append(":").append(secLabel).toString();
+    }
+
     public LocalDateTime getStartTimeStamp() {
         return startTimeStamp;
     }
@@ -84,11 +103,15 @@ public class AbyssRun {
         this.cargoItems = cargoItems;
     }
 
-    public long getElapsedTime() {
-        return elapsedTime;
+    public String getElapsedTime() {
+        return formatTime(elapsedTime);
     }
 
     public void setElapsedTime(long elapsedTime) {
         this.elapsedTime = elapsedTime;
+    }
+
+    public LocalDate getDate() {
+        return stopTimeStamp.toLocalDate();
     }
 }

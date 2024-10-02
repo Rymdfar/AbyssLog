@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<TableView xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="AbyssLog.RunTableController"
+           fx:id="runTable"
+           layoutX="14.0" layoutY="73.0" prefHeight="757.0" prefWidth="480.0">
+        <columns>
+            <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="runTimeColumn" prefWidth="75.0" text="Run time" />
+            <TableColumn fx:id="lootValueColumn" prefWidth="75.0" text="Loot value" />
+            <TableColumn fx:id="tierColumn" prefWidth="75.0" text="Tier" />
+            <TableColumn fx:id="weatherColumn" prefWidth="75.0" text="Weather" />
+            <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Type" />
+        </columns>
+
+</TableView>

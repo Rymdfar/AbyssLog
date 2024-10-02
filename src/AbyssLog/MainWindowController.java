@@ -23,6 +23,8 @@ public class MainWindowController implements Initializable {
     private TextArea endCargoTextArea;
     @FXML
     private Label statusLabel;
+    @FXML
+    private RunTableController runTableController;
 
     private AbyssRun currentRun;
     private Timer runTimer;
@@ -47,6 +49,7 @@ public class MainWindowController implements Initializable {
         return nanoSeconds / (1000*1000*1000);
     }
 
+    // TODO might want to make this a static util method
     private String formatTime(long nanoTime) {
         long tempSec = nanoTime / (1000*1000*1000);
         long sec = tempSec % 60;
@@ -110,6 +113,7 @@ public class MainWindowController implements Initializable {
             updateStatusLabel("Run recorded. No loot registered.");
         }
         currentRun.stopRun(System.nanoTime());
+        runTableController.getRunTable().getItems().add(currentRun);
         startRunButton.setText("Start run");
         startCargoTextArea.setDisable(false);
         endCargoTextArea.setDisable(true);
