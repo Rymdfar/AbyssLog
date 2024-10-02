@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AbyssLog.MainWindowController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="900.0" prefWidth="1600.0">
+         <children>
+            <TextArea fx:id="startCargoTextArea" layoutX="1185.0" layoutY="90.0" prefHeight="259.0" prefWidth="401.0" promptText="Paste starting cargo..." />
+            <TextArea fx:id="endCargoTextArea" layoutX="1185.0" layoutY="434.0" prefHeight="259.0" prefWidth="401.0" />
+            <Label layoutX="1185.0" layoutY="417.0" text="End cargo:" />
+            <Label layoutX="1185.0" layoutY="73.0" text="Start cargo:" />
+            <Button fx:id="startRunButton" layoutX="1524.0" layoutY="356.0" mnemonicParsing="false" onAction="#onStartRunButton" text="Start run" />
+            <Label layoutX="1508.0" layoutY="23.0" text="Timer:" />
+            <Label fx:id="runTimerLabel" layoutX="1543.0" layoutY="18.0" text="00:00" textAlignment="RIGHT">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="statusLabel" text="Label" textAlignment="RIGHT" AnchorPane.rightAnchor="5" AnchorPane.bottomAnchor="5" />
+         </children></AnchorPane>
+   </children>
+</GridPane>
