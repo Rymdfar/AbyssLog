@@ -1,10 +1,14 @@
 package AbyssLog;
 
 import Models.AbyssRun;
+import Models.Tier;
+import Models.Type;
+import Models.Weather;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
@@ -25,6 +29,12 @@ public class MainWindowController implements Initializable {
     private Label statusLabel;
     @FXML
     private RunTableController runTableController;
+    @FXML
+    private ChoiceBox<Tier> tierChoiceBox;
+    @FXML
+    private ChoiceBox<Type> typeChoiceBox;
+    @FXML
+    private ChoiceBox<Weather> weatherChoiceBox;
 
     private AbyssRun currentRun;
     private Timer runTimer;
@@ -33,6 +43,9 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        tierChoiceBox.getItems().setAll(Tier.values());
+        typeChoiceBox.getItems().setAll(Type.values());
+        weatherChoiceBox.getItems().setAll(Weather.values());
         endCargoTextArea.setDisable(true);
     }
 
@@ -89,7 +102,7 @@ public class MainWindowController implements Initializable {
 
     private void startRun() {
         running = true;
-        currentRun = new AbyssRun();
+        currentRun = new AbyssRun(tierChoiceBox.getValue(), typeChoiceBox.getValue(), weatherChoiceBox.getValue());
         if (!startCargoTextArea.getText().isEmpty()) {
             currentRun.updateCargo(parseCargo(startCargoTextArea), true);
         }
