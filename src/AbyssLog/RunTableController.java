@@ -3,6 +3,7 @@ package AbyssLog;
 import Models.AbyssRun;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +32,17 @@ public class RunTableController implements Initializable {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         runTimeColumn.setCellValueFactory(new PropertyValueFactory<>("elapsedTime"));
         lootValueColumn.setCellValueFactory(new PropertyValueFactory<>("lootValue"));
+        lootValueColumn.setCellFactory(a -> new TableCell<String, Long>() {
+            @Override
+            protected void updateItem(Long price, boolean empty) {
+                super.updateItem(price, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(String.valueOf(price / 1000000) + "M");
+                }
+            }
+        });
         tierColumn.setCellValueFactory(new PropertyValueFactory<>("tier"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         weatherColumn.setCellValueFactory(new PropertyValueFactory<>("weather"));

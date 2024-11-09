@@ -11,7 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,9 +48,24 @@ public class MainWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tierChoiceBox.getItems().setAll(Tier.values());
+        tierChoiceBox.setValue(Tier.CATACLYSMIC);
         typeChoiceBox.getItems().setAll(Type.values());
+        typeChoiceBox.setValue(Type.FRIGATE);
         weatherChoiceBox.getItems().setAll(Weather.values());
+        weatherChoiceBox.setValue(Weather.DARK);
         endCargoTextArea.setDisable(true);
+
+        startCargoTextArea.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                onStartRunButton();
+            }
+        });
+
+        endCargoTextArea.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                onStartRunButton();
+            }
+        });
     }
 
     public void onStartRunButton(){
@@ -124,7 +141,9 @@ public class MainWindowController implements Initializable {
         if (!endCargoTextArea.getText().isEmpty()) {
             currentRun.updateCargo(parseCargo(endCargoTextArea), false);
             try {
-                marketService.appraise(endCargoTextArea.getText());
+                JSONObject appraisal = marketService.appraise(endCargoTextArea.getText());
+                Double lootValue = appraisal.getJSONObject("immediatePrices").getDouble("totalSplitPrice");
+                currentRun.setLootValue(lootValue.longValue());
             } catch (IOException ex) {
                 //TODO handle this
             }

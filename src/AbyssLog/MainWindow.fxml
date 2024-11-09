@@ -20,7 +20,7 @@
             <ChoiceBox fx:id="tierChoiceBox" layoutX="1150" prefWidth="120" layoutY="356.0" />
             <ChoiceBox fx:id="typeChoiceBox" layoutX="1275" prefWidth="120" layoutY="356.0" />
             <ChoiceBox fx:id="weatherChoiceBox" layoutX="1400" prefWidth="120" layoutY="356.0" />
-            <Button fx:id="startRunButton" layoutX="1524.0" layoutY="356.0" mnemonicParsing="false" onAction="#onStartRunButton" text="Start run" />
+            <Button fx:id="startRunButton" defaultButton="true" layoutX="1524.0" layoutY="356.0" mnemonicParsing="false" onAction="#onStartRunButton" text="Start run" />
             <Label layoutX="1508.0" layoutY="23.0" text="Timer:" />
             <Label fx:id="runTimerLabel" layoutX="1543.0" layoutY="18.0" text="00:00" textAlignment="RIGHT">
                <font>

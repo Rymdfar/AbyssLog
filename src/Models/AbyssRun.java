@@ -15,6 +15,7 @@ public class AbyssRun {
     private Tier tier;
     private Type type;
     private Weather weather;
+    private long lootValue;
 
     private HashMap<String, Integer> cargoItems = new HashMap<>();
     private HashMap<String, Integer> startingCargoItems = new HashMap<>();
@@ -166,5 +167,13 @@ public class AbyssRun {
 
     public HashMap<String, Integer> getNewItems() {
         return newItems;
+    }
+
+    public long getLootValue() {
+        return lootValue;
+    }
+
+    public void setLootValue(long lootValue) {
+        this.lootValue = lootValue;
     }
 }
