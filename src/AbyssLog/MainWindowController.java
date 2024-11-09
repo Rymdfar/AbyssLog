@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -40,6 +41,7 @@ public class MainWindowController implements Initializable {
     private Timer runTimer;
     private long startTime;
     private boolean running = false;
+    private MarketService marketService = new MarketService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -121,6 +123,11 @@ public class MainWindowController implements Initializable {
         running = false;
         if (!endCargoTextArea.getText().isEmpty()) {
             currentRun.updateCargo(parseCargo(endCargoTextArea), false);
+            try {
+                marketService.appraise(endCargoTextArea.getText());
+            } catch (IOException ex) {
+                //TODO handle this
+            }
             updateStatusLabel("Run with loot recorded");
         } else {
             updateStatusLabel("Run recorded. No loot registered.");
